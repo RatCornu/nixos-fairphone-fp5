@@ -12,7 +12,6 @@
   ...
 }: let
   cfg = config.nixos-fairphone-fp5.audio;
-  dummystreamhack = pkgs.callPackage ../../packages/dummystreamhack {};
 in {
   options.nixos-fairphone-fp5.audio = {
     enable = lib.mkOption {
@@ -35,7 +34,7 @@ in {
       description = "Qualcomm voice-call ALSA stream";
 
       serviceConfig = {
-        ExecStart = "${dummystreamhack}/bin/dummystreamhack %I";
+        ExecStart = "${pkgs.dummystreamhack}/bin/dummystreamhack %I";
         KillMode = "process";
       };
     };
